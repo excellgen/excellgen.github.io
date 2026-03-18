@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html data-theme="light">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ExCellGen</title>
+
+    <!-- Favicon -->
+    <!-- <link rel="icon" type="image/x-icon" href="./assets/favicon.ico"> -->
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;400;500;600&family=Roboto+Mono&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Architects Daughter" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script src="./js/bulma_toggle.js"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/5fd1dd8417.js" crossorigin="anonymous"></script>
+
+    <!-- Academicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+
+    <!-- MathJax for TeX equation support -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <!-- BEGIN: Title & Authors Section -->
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-widescreen has-text-centered">
+                <h1 class="title is-size-1 is-size-2-mobile publication-title">
+                    ExCellGen: Fast, Controllable, Photorealistic 3D Scene Generation from a Single Real-World Exemplar
+                </h1>
+                <div class="is-size-3-tablet publication-institute">
+                    <span class="author-block">CVM 2026 (Journal Track)</span>
+                </div>
+
+                <div class="container is-max-desktop has-text-centered author-list">
+                    <div class="columns is-mobile is-centered is-gapless">
+                        <div class="column is-3-tablet is-size-5-tablet publication-authors">
+                            <a class="author-blocks" href="https://clementjambon.github.io/">Clément
+                                Jambon*<sup>1</sup></a>
+                        </div>
+                        <div class="column is-3-tablet is-size-5-tablet publication-authors">
+                            <a class="author-blocks" href="https://www.changwoon.info/">Changwoon Choi<sup>2</sup></a>
+                        </div>
+                        <div class="column is-3-tablet is-size-5-tablet publication-authors">
+                            <a class="author-blocks" href="https://dszhang.me/about">Dongsu Zhang<sup>2</sup></a>
+                        </div>
+                        <div class="column is-3-tablet is-size-5-tablet publication-authors">
+                            <a class="author-blocks" href="https://igl.ethz.ch/people/sorkine/">Olga
+                                Sorkine-Hornung<sup>3</sup></a>
+                        </div>
+                        <div class="column is-3-tablet is-size-5-tablet publication-authors">
+                            <a class="author-blocks" href="https://3d.snu.ac.kr/members">Young Min Kim<sup>2</sup></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="is-size-5-tablet publication-institute">
+                    <span class="author-block">Massachusetts Institute of Technology</span>
+                    <sup>1</sup>
+                    &nbsp;&nbsp;
+                    <span class="author-block">Seoul National University</span>
+                    <sup>2</sup>
+                    &nbsp;&nbsp;
+                    <span class="author-block">ETH Zurich</span>
+                    <sup>3</sup>
+                </div>
+
+                <div class="is-size-6-tablet equal-contribution">
+                    <span class="author-block">* Work done at Seoul National University and ETH Zurich</span>
+                </div>
+
+                <div class="is-size-5 link-blocks">
+                    <a class="button link-button is-rounded" href="https://arxiv.org/abs/2412.16253">
+                        <span class="icon">
+                            <i class="fa-solid fa-file"></i>
+                        </span>
+                        <span>Paper</span>
+                    </a>
+                    <a class="button link-button-disabled is-rounded" href="#" style="pointer-events: none;">
+                        <span class="icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </span>
+                        <span>Video</span>
+                    </a>
+                    <a class="button link-button is-rounded" href="https://github.com/clementjambon/excellgen">
+                        <span class="icon">
+                            <i class="fab fa-github"></i>
+                        </span>
+                        <span>Code</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END: Title & Authors Section -->
+    <!-- BEGIN: Teaser Section -->
+    <section class="hero">
+        <div class="container is-max-widescreen">
+            <div class="hero-body">
+                <img src="./assets/teaser.jpg" width="100%" style="display: block; margin: auto;" />
+                <h2 class="tldr">
+                    <br />
+                    We propose ExCellGen, a framework for fast, controllable, and photorealistic 3D scene generation
+                    from real-world exemplars.
+                    We convert casual video inputs (e.g., drone or mobile footage) into a high-quality 3D representation
+                    using 3D Gaussian splats. Within our
+                    GUI editor, users can extract regions from which they wish to generate variations. Our two-stage
+                    amortized generation strategy first uses a
+                    per-scene Generative
+                    Cellular Automaton (GCA) to produce a sparse volume of
+                    featurized voxels,
+                    then composites the final appearance
+                    via sparse patch-based remapping from the original scene. Given coarse conditioning voxels, users
+                    can synthesize new variations in just
+                    seconds in a fully interactive way.
+                </h2>
+            </div>
+        </div>
+    </section>
+    <!-- END: Teaser Section -->
+    <!-- BEGIN: Abstract Section -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
+                <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
+                    Abstract
+                </h2>
+                <div class="content has-text-justified">
+                    <p>
+                        Photorealistic 3D scene generation is challenging due to the scarcity of large-scale,
+                        high-quality real-world 3D datasets and complex workflows requiring specialized expertise for
+                        manual modeling. These constraints often result in slow iteration cycles, where each
+                        modification demands substantial effort, ultimately stifling creativity. We propose a fast,
+                        exemplar-driven framework for generating 3D scenes from a single casual input, such as handheld
+                        video or drone footage. Our method first leverages 3D Gaussian Splatting (3DGS) to robustly
+                        reconstruct input scenes with a high-quality 3D appearance model. We then train a per-scene
+                        Generative Cellular Automaton (GCA) to produce a sparse volume of featurized voxels, effectively
+                        amortizing scene generation while enabling controllability. A subsequent patch-based remapping
+                        step composites the complete scene from the exemplar's initial 3D Gaussian splats, successfully
+                        recovering the appearance statistics of the input scene. The entire pipeline can be trained in
+                        less than 10 minutes for each exemplar and generates scenes in 0.5-2 seconds. Our method enables
+                        interactive creation with full user control, and we showcase complex 3D generation results from
+                        real-world exemplars within a self-contained interactive GUI.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END: Abstract Section -->
+
+    <!-- BEGIN: Method Section -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="column is-full-width is-centered has-text-centered">
+                <h3 class="subtitle is-size-4 has-text-weight-medium publication-keywords" style="margin-top: 2rem;">
+                    Overview
+                </h3>
+                <img src="./assets/overview.png" width="100%" style="display: block; margin: auto;" />
+            </div>
+
+            <p class="normal-text">
+                Overview of our pipeline. Training phase. (left) From a casual video, an exemplar scene is reconstructed
+                as 3D Gaussians
+                augmented with DINO features. After selecting the region of interest within an interactive editor, the
+                3D Gaussians are converted into a
+                sparse volume of voxels. A per-scene Generative Cellular Automaton (GCA) is then efficiently trained on
+                random crops of the scenes in
+                under 10 minutes. Generation phase. (right) A set of coarse conditioning voxels, either copied from
+                parts of the exemplar or manually
+                edited, is provided to the pre-trained GCA. The GCA generates a novel sparse volume of featurized
+                voxels. These voxels are then remapped
+                to the exemplar's 3D Gaussians using a sparse patch-based consistency step.
+            </p>
+        </div>
+
+        <div class="container is-max-desktop">
+            <div class="column is-full-width is-centered has-text-centered">
+                <h3 class="subtitle is-size-4 has-text-weight-medium publication-keywords" style="margin-top: 2rem;">
+                    Generative Cellular Automata (GCA)
+                </h3>
+                <img src="./assets/gca.png" style="display: block; margin: auto; width: 100%; max-width: 500px;" />
+            </div>
+
+            <p class="normal-text">
+                At each time step $t$, GCA samples a new state $X^{t + 1}$ composed of sparse voxel occupancies
+                equipped with features from $p_{\theta}(X^{t+1} | X^t, X^0)$.
+                Recursively applying the transition kernel $p_{\theta}$ to the initial state $X^0$ yields the
+                final generated state $X^T$.
+                We adapt GCA to conditional generation by choosing $X^0$ to be the upsampled coarse set of
+                conditioning voxels and concatenating it to $X^t$ each time $p_\theta$ is applied (gray arrows
+                on the top).
+            </p>
+        </div>
+
+        <div class="container is-max-desktop">
+            <div class="column is-full-width is-centered has-text-centered">
+                <h3 class="subtitle is-size-4 has-text-weight-medium publication-keywords" style="margin-top: 2rem;">
+                    Patch-Based Consistency Step
+                </h3>
+                <img src="./assets/patch_match.png"
+                    style="display: block; margin: auto; width: 100%; max-width: 500px;" />
+            </div>
+
+            <p class="normal-text">
+                <i>Voxel-wise NN.</i> Naively remapping each predicted voxel
+                to its nearest feature in the exemplar and filling in the corresponding 3D Gaussians fails to produce
+                consistent results due to local
+                consistency and the approximate predictions of GCA. <i>Patch-wise
+                    NN.</i> Using the patch-wise distance defined in Equation (3) improves visual coherence but still
+                fails to account for modeling errors. <i>Patch Consistency.</i> We thus propose an additional sparse
+                patch-based consistency operation to refine missing local statistics.
+            </p>
+        </div>
+
+        <div class="container is-max-desktop">
+            <div class="column is-full-width is-centered has-text-centered">
+                <h3 class="subtitle is-size-4 has-text-weight-medium publication-keywords" style="margin-top: 2rem;">
+                    Results
+                </h3>
+                <img src="./assets/diverse_results.png" width="100%" style="display: block; margin: auto;" />
+            </div>
+
+            <p class="normal-text">
+                Starting from the exemplar on the left, we generate multiple samples for different conditioning signals.
+                All examples are derived
+                from real-world scenes obtained from casual mobile footage (rows 1, 3) or a drone (row 2).
+            </p>
+        </div>
+    </section>
+    <!-- END: Method Section -->
+
+
+    <!-- BEGIN: BibTeX Section -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="column is-full-width is-centered has-text-centered">
+                <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">BibTeX</h2>
+            </div>
+            <div class="box bibtex-box">
+                <pre style="white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word;">
+@misc{excellgen,
+      title={ExCellGen: Fast, Controllable, Photorealistic 3D Scene Generation from a Single Real-World Exemplar}, 
+      author={Clément Jambon and Changwoon Choi and Dongsu Zhang and Olga Sorkine-Hornung and Young Min Kim},
+      year={2026},
+      eprint={2412.16253},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2412.16253}, 
+}
+</pre>
+            </div>
+        </div>
+    </section>
+    <!-- END: BibTeX Section -->
+
+    <!-- BEGIN: Logo Section -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="column is-full-width is-centered has-text-centered">
+                <a href="https://adg.csail.mit.edu/" target="_blank" rel="noopener"><img src="./assets/3dv_logo.png"
+                        style="display: block; margin: auto; width: 300px;" class="logo-responsive" /></a>
+
+            </div>
+        </div>
+    </section>
+    <!-- END: Logo Section -->
+</body>
+
+</html>
